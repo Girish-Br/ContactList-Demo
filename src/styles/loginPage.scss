@@ -1,0 +1,31 @@
+.gradient-custom-2 {
+      /* fallback for old browsers */
+      background: #fccb90;   
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(to left, #009999 0%, #00ffcc 100%);   
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: linear-gradient(to left, #009999 0%, #00ffcc 100%);
+}
+
+.gardient-login-button{
+      background: -webkit-linear-gradient(to left, #009999 0%, #ffffff 100%);
+      background: linear-gradient(to left, #009999 0%, #ffffff 100%)
+}
+
+#login-container{
+      background-color: #eee;
+}
+
+@media (min-width: 769px) {
+      .gradient-custom-2 {
+        border-top-right-radius: .3rem;
+        border-bottom-right-radius: .3rem;
+      }
+      .loginCard-container{
+            width: 75% !important;
+      }
+}
+
+.loginCard-container{
+      width: 100%
+}
