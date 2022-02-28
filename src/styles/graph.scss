@@ -1,0 +1,17 @@
+.bar-graph-container{
+      width: 45%;
+}
+
+.line-graph-container{
+      width: 45%;
+}
+
+@media (max-width: 769px) {
+      .bar-graph-container{
+            width: 100% !important;
+      }
+      
+      .line-graph-container{
+            width: 100% !important;
+      }
+}
