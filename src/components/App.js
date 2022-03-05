@@ -2,17 +2,20 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import RouterComp from '../route/RouterComp';
 import "../styles/index.scss";
-
-export default class App extends Component {
+import { Provider } from "react-redux";
+import store from "../redux/store";
+class App extends Component {
   render() {
     return (
-      <div className="hero">
-        <RouterComp />
-      </div>
-
+      <React.StrictMode>
+        <Provider store={store}>
+          <div className="hero">
+            <RouterComp />
+          </div>
+        </Provider>
+      </React.StrictMode>
     );
   }
 }
 
-ReactDOM.render(
-  <App />, document.getElementById('root'));
+export default App;

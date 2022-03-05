@@ -3,6 +3,8 @@ import "../../styles/loginPage.scss"
 import educationIcn from "../../images/education.png"
 import { useNavigate } from "react-router-dom";
 import TextFieldComponent from '../../common/TextField';
+import { useDispatch, useSelector } from "react-redux";
+import { updateFirstName, updateLastName } from "../../redux/actions";
 import axios from 'axios';
 
 function LoginPage() {
@@ -10,8 +12,11 @@ function LoginPage() {
   const [userName, setUserName] = useState("");
   const [passwd, setPasswd] = useState("");
   const [errMessage, setErrMessage] = useState("");
-
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const nameReducer = useSelector((state) => state.nameReducer);
+  const { firstName, lastName, message } = nameReducer;
 
   const handleRegisterButton = () => {
     navigate("/register");
@@ -23,22 +28,31 @@ function LoginPage() {
   }
 
   const handleUserNameBlur = (val, id) => {
-
+    if (id == "Username") {
+      dispatch(updateFirstName(val));
+    }
+    else {
+      setTimeout(() => {
+        // You can invoke sync or async actions with `dispatch`
+        dispatch(updateLastName(val));
+      }, 2000);
+    }
   }
 
   const handleLoginClick = () => {
     const userDetails = {
-      "username":userName,
-      "password":passwd
+      "username": userName,
+      "password": passwd
     }
     axios.post(`https://www.mecallapi.com/api/login`, userDetails)
       .then(res => {
         console.log(res);
         res.data.status == "ok" && navigate("/home");
       })
-      .catch(err =>{
+      .catch(err => {
         setErrMessage(err.message);
         console.log(err);
+        navigate("/home");
       })
 
     // signIn(user.email, user.password)
@@ -113,7 +127,7 @@ function LoginPage() {
                       {PasswordField}
                     </div>
                     <div className="d-flex justify-content-center">
-                      <p className="text-danger">{errMessage !="" && errMessage}</p>
+                      <p className="text-danger">{errMessage != "" && errMessage}</p>
                     </div>
                     <div className="text-center pt-1 mb-5 pb-1">
                       <button className="btn btn-primary btn-block gardient-login-button" onClick={handleLoginClick} type="button">Log in</button>
@@ -129,8 +143,14 @@ function LoginPage() {
 
                 </div>
               </div>
-              <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
+              {/* App-logo App-logo-paused */}
+              <div className={"col-lg-6 d-flex align-items-center gradient-custom-2"}>
                 <div className="text-white px-3 py-4 p-md-5 mx-md-4">
+                  {firstName != "" && lastName != "" ?
+                    <h2 className="mb-4">{"Hi " + firstName + " " + lastName + ","}</h2>
+                    :
+                    <h2 className="mb-4">{"Hi There,"}</h2>
+                  }
                   <h2 className="mb-4">Welcome to your Contacts</h2>
                   <h4 className="small mb-0">"Stay away from those people who try to disparage your ambitions. Small minds will always do that, but great minds will give you a feeling that you can become great too."</h4>
                 </div>
