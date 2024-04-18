@@ -8,7 +8,9 @@
     "watch": "webpack --watch",
     "build": "cross-env NODE_ENV=production webpack",
     "build-dev": "webpack",
-    "clean": "rm -rf ./dist"
+    "clean": "rm -rf ./dist",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "Jimmy DC",
   "license": "ISC",
@@ -21,6 +23,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
+    "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.0.0-beta.5",
     "mini-css-extract-plugin": "^1.3.4",
     "postcss": "^8.4.6",

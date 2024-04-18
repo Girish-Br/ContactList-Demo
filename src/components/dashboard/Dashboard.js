@@ -9,8 +9,8 @@ function DashboardPage() {
   return (
     <div id="register-container">
       <Navbar />
-      <Youtube />
-      {/* <ContactList/> */}
+      {/* <Youtube /> */}
+      <ContactList/>
     </div>
   );
 }
